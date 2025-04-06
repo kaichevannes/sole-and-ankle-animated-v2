@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
 
 import { QUERIES, WEIGHTS } from '../../constants';
@@ -42,9 +42,28 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
   );
 };
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const slideIn = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+`;
+
 const Overlay = styled(Dialog.Overlay)`
   position: fixed;
   inset: 0;
+  animation: ${fadeIn} 500ms ease-out;
   background: var(--color-backdrop);
 `;
 
@@ -59,6 +78,9 @@ const Content = styled(Dialog.Content)`
   padding: 24px 32px;
   display: flex;
   flex-direction: column;
+
+  animation: ${slideIn} 300ms ease-out backwards;
+  animation-delay: 300ms;
 `;
 
 const CloseButton = styled(UnstyledButton)`

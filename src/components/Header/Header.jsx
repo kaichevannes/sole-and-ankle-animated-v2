@@ -20,12 +20,30 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale">
+            <NavLinkContent>Sale</NavLinkContent>
+            <NavLinkFlipUp>Sale</NavLinkFlipUp>
+          </NavLink>
+          <NavLink href="/new">
+            <NavLinkContent>New&nbsp;Releases</NavLinkContent>
+            <NavLinkFlipUp>New&nbsp;Releases</NavLinkFlipUp>
+          </NavLink>
+          <NavLink href="/men">
+            <NavLinkContent>Men</NavLinkContent>
+            <NavLinkFlipUp>Men</NavLinkFlipUp>
+          </NavLink>
+          <NavLink href="/women">
+            <NavLinkContent>Women</NavLinkContent>
+            <NavLinkFlipUp>Women</NavLinkFlipUp>
+          </NavLink>
+          <NavLink href="/kids">
+            <NavLinkContent>Kids</NavLinkContent>
+            <NavLinkFlipUp>Kids</NavLinkFlipUp>
+          </NavLink>
+          <NavLink href="/collections">
+            <NavLinkContent>Collections</NavLinkContent>
+            <NavLinkFlipUp>Collections</NavLinkFlipUp>
+          </NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -115,14 +133,42 @@ const Filler = styled.div`
 `;
 
 const NavLink = styled.a`
+  position: relative;
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  overflow: hidden;
 
   &:first-of-type {
     color: var(--color-secondary);
+  }
+`;
+
+const NavLinkContent = styled.span`
+  display: block;
+  transform-origin: top center;
+  transition: transform 400ms;
+
+  ${NavLink}:hover & {
+    perspective: 50px;
+    transform: rotateX(90deg);
+    transition: transform 200ms;
+  }
+`;
+
+const NavLinkFlipUp = styled.span`
+  position: absolute;
+  top: 0px;
+  display: block;
+  transform: translateY(100%);
+  transition: transform 400ms;
+  font-weight: bold;
+   
+  ${NavLink}:hover & {
+    transform: translateY(0%);
+    transition: transform 200ms;
   }
 `;
 
